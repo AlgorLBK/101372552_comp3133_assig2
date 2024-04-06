@@ -1,0 +1,14 @@
+<p>add-employee works!</p>
+<form class="form" [formGroup]="employeeForm" (ngSubmit)="addEmployee">
+    <input class="input" type="text" name="first_name" placeholder="Enter First Name" formControlName="first_name"/>
+    <br />
+    <input class="input" type="text" name="last_name" placeholder="Enter Last Name" formControlName="last_name"/>
+    <br />
+    <input class="input" type="email" name="email"  placeholder="Enter Email"  formControlName="email"/>
+    <br />
+    <input class="input" type="gender" name="gender"  placeholder="Enter Gender"  formControlName="gender"/>
+    <br />
+    <input class="input" type="salary" name="salary"  placeholder="Enter Salary"  formControlName="salary"/>
+    <br />
+    <button class="submit-button" [disabled]="employeeForm.invalid">Save</button>
+</form>
