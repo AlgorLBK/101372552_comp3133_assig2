@@ -8,6 +8,7 @@ import { Apollo } from 'apollo-angular';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { Router } from '@angular/router';
 import { JsonPipe } from '@angular/common';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 
 @Component({
@@ -24,7 +25,6 @@ export class AppComponent {
   error: any;
   
   constructor(private apollo : Apollo, private router:Router){
-    console.log("--- GQL Component() ---")
   }
 
   ngOnInit(): void {
@@ -46,6 +46,7 @@ export class AppComponent {
   }
 
   deleteEmployee(id: string) {
+    alert(id)
     this.apollo.mutate({
       mutation: DEL_EMPLOYEE,
       variables: {
@@ -55,8 +56,10 @@ export class AppComponent {
         query: GET_EMPLOYEES
       }]
     }).subscribe(({ data }: any) => {
+      this.router.navigate(['']);
       this.employees = data.getAllEmployees;
     }, (error) => {
+      console.log("Error: " + error);
       this.error = error;
     })
   }

@@ -15,11 +15,10 @@ const GET_EMPLOYEES = gql`
 
 const DEL_EMPLOYEE = gql`
     mutation DeleteEmployee($employeeId: ID!) {
-        deleteEmployee(id: $employeeId) {
-            _id
-        }
+        deleteEmployee(_id: $employeeId)
     }
-`
+`;
+
 
 const SEARCH_EMPLOYEE = gql`
     query SearchEmployeeById($searchKey: ID!) {
@@ -37,6 +36,18 @@ const SEARCH_EMPLOYEE = gql`
 const ADD_EMPLOYEE = gql`
     mutation AddEmployee($first_name: String!, $last_name: String!, $email: String!, $gender: String!, $salary: Float!) {
         addEmployee(first_name: $first_name, last_name: $last_name, email: $email, gender: $gender, salary: $salary) {
+            first_name
+            last_name
+            email
+            gender
+            salary
+        }
+    }
+`
+
+const UPDATE_EMPLOYEE = gql`
+    mutation UpdateEmployee($id: ID!, $first_name: String!, $last_name: String!, $email: String!, $gender: String!, $salary: Float!) {
+        updateEmployee(_id: $id, first_name: $first_name, last_name: $last_name, email: $email, gender: $gender, salary: $salary) {
             _id
             first_name
             last_name
@@ -47,4 +58,4 @@ const ADD_EMPLOYEE = gql`
     }
 `
 
-export {GET_EMPLOYEES, DEL_EMPLOYEE, SEARCH_EMPLOYEE, ADD_EMPLOYEE};
+export {GET_EMPLOYEES, DEL_EMPLOYEE, SEARCH_EMPLOYEE, ADD_EMPLOYEE, UPDATE_EMPLOYEE};

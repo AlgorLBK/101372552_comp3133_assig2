@@ -1,7 +1,7 @@
 <div class="employee-management-app">
   <h1>Employee Management App</h1>
   <div class="employee-list">
-    <button class="add-employee-btn" routerLink="employee/add">Add Employee</button>
+    <button class="add-employee-btn" routerLink="add">Add Employee</button>
     <h2>Employees List</h2>
     <table>
       <thead>
@@ -19,9 +19,9 @@
           <td>{{ employee.last_name }}</td>
           <td>{{ employee.email }}</td>
           <td>
-            <button class="action-btn update">Update</button>
+            <button class="action-btn update" routerLink="update/{{employee._id}}">Update</button>
             <button class="action-btn delete" (click)="deleteEmployee(employee._id)">Delete</button>
-            <a class="action-btn view" routerLink="/employee/{{employee._id}}">View</a>
+            <button class="action-btn view" routerLink="employee/{{employee._id}}">View</button>
           </td>
         </tr>
       }

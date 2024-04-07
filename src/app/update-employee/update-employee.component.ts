@@ -1,20 +1,21 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
-
-import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
-import { ADD_EMPLOYEE, GET_EMPLOYEES } from '../graphql/graphql.queries';
 import { Apollo } from 'apollo-angular';
-import { error } from 'console';
+import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UPDATE_EMPLOYEE, GET_EMPLOYEES } from '../graphql/graphql.queries';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+
 @Component({
-  selector: 'app-add-employee',
+  selector: 'app-update-employee',
   standalone: true,
   imports: [RouterOutlet, RouterLink, ReactiveFormsModule],
-  templateUrl: './add-employee.component.html',
-  styleUrl: './add-employee.component.css'
+  templateUrl: './update-employee.component.html',
+  styleUrl: './update-employee.component.css'
 })
-export class AddEmployeeComponent {
-  employees: any[] = [];
+export class UpdateEmployeeComponent {
+  employee: any[] = []
+  id: string = ''
 
   employeeForm = new FormGroup({
     first_name: new FormControl('', Validators.required),
@@ -24,14 +25,20 @@ export class AddEmployeeComponent {
     salary: new FormControl('', Validators.required)
   });
 
-  constructor(private apollo: Apollo) { }
+  constructor(private route: ActivatedRoute, private apollo: Apollo, private router:Router) {
+    this.route.params.subscribe((params) => {
+      const id = params['employeeID'];
+      this.id = id
+    })
+  }
   
-  ngOnInit(): void{}
-
-  addEmployee() {
+  ngOnInit(): void{ }
+  
+  updateEmployee() {
     this.apollo.mutate({
-      mutation: ADD_EMPLOYEE,
+      mutation: UPDATE_EMPLOYEE,
       variables: {
+        id: this.id,
         first_name: this.employeeForm.value.first_name,
         last_name: this.employeeForm.value.last_name,
         email: this.employeeForm.value.email,
@@ -42,8 +49,9 @@ export class AddEmployeeComponent {
         query: GET_EMPLOYEES
       }]
     }).subscribe(({ data }: any) => {
-      this.employees = data.addEmployee;
+      this.employee = data.addEmployee;
       this.employeeForm.reset()
+      this.router.navigate([''])
     }, (error) => {
       console.log("Error: " + error)
     })

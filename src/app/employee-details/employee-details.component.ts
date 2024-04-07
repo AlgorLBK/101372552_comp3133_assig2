@@ -18,13 +18,11 @@ export class EmployeeDetailsComponent {
   constructor(private route: ActivatedRoute, private apollo: Apollo) {
     this.route.params.subscribe((params) => {
       const id = params['employeeID'];
-      console.log("Employee Details for ID : " + id);
       this.searchEmployeeById(id);
     })
   }
     
     ngOnInit(): void {
-      console.log("Employee Details")
     }
   
   searchEmployeeById(id: string) {
@@ -34,7 +32,6 @@ export class EmployeeDetailsComponent {
         searchKey: id
       }
     }).subscribe(({ data }: any) => {
-      console.log(data.searchEmployeeById);
       this.employeeDetails = data.searchEmployeeById;
     })
     }
