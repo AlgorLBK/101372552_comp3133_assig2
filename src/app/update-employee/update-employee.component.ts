@@ -51,7 +51,7 @@ export class UpdateEmployeeComponent {
     }).subscribe(({ data }: any) => {
       this.employee = data.addEmployee;
       this.employeeForm.reset()
-      this.router.navigate([''])
+      this.router.navigate(['/list'])
     }, (error) => {
       console.log("Error: " + error)
     })
