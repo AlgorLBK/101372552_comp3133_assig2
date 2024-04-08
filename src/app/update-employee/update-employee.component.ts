@@ -56,4 +56,8 @@ export class UpdateEmployeeComponent {
       console.log("Error: " + error)
     })
   }
+
+  goBack() {
+    this.router.navigate(['/list']);
+  }
 }

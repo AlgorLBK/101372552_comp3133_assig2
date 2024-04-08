@@ -58,4 +58,26 @@ const UPDATE_EMPLOYEE = gql`
     }
 `
 
-export {GET_EMPLOYEES, DEL_EMPLOYEE, SEARCH_EMPLOYEE, ADD_EMPLOYEE, UPDATE_EMPLOYEE};
+const REGISTER_USER = gql`
+    mutation Signup($username: String!, $email: String!, $password: String!) {
+        signup(username: $username, email: $email, password: $password) {
+            _id
+            username
+            email
+            password
+        }
+    }
+`
+
+const LOGIN = gql`
+    query Login($usernameOrEmail: String!, $password: String!){
+        login(usernameOrEmail:$usernameOrEmail, password:$password) {
+            _id
+            username
+            email
+            password
+        }
+    }
+`
+
+export {GET_EMPLOYEES, DEL_EMPLOYEE, SEARCH_EMPLOYEE, ADD_EMPLOYEE, UPDATE_EMPLOYEE, REGISTER_USER, LOGIN};

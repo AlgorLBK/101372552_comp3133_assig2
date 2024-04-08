@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { JsonPipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Apollo } from 'apollo-angular';
-
+import { Router } from '@angular/router';
 import { SEARCH_EMPLOYEE } from '../graphql/graphql.queries';
 
 @Component({
@@ -15,15 +15,14 @@ import { SEARCH_EMPLOYEE } from '../graphql/graphql.queries';
 export class EmployeeDetailsComponent {
   employeeDetails: any = {}
 
-  constructor(private route: ActivatedRoute, private apollo: Apollo) {
+  constructor(private route: ActivatedRoute, private apollo: Apollo, private router: Router) {
     this.route.params.subscribe((params) => {
       const id = params['employeeID'];
       this.searchEmployeeById(id);
     })
   }
     
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
   
   searchEmployeeById(id: string) {
     this.apollo.query({
@@ -34,5 +33,9 @@ export class EmployeeDetailsComponent {
     }).subscribe(({ data }: any) => {
       this.employeeDetails = data.searchEmployeeById;
     })
-    }
+  }
+  
+  goBack() {
+    this.router.navigate(['/list'])
+  }
 }

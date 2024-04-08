@@ -17,4 +17,5 @@
     <input class="input" type="number" name="salary"  placeholder="Enter Salary"  formControlName="salary" required/>
     <br />
     <button class="submit-button" [disabled]="employeeForm.invalid">Save</button>
+    <button (click)="goBack()">Cancel</button>
 </form>

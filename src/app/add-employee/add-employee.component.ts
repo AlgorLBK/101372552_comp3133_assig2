@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ADD_EMPLOYEE, GET_EMPLOYEES } from '../graphql/graphql.queries';
 import { Apollo } from 'apollo-angular';
 import { error } from 'console';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-employee',
   standalone: true,
@@ -24,7 +25,7 @@ export class AddEmployeeComponent {
     salary: new FormControl('', Validators.required)
   });
 
-  constructor(private apollo: Apollo) { }
+  constructor(private apollo: Apollo, private router: Router) { }
   
   ngOnInit(): void{}
 
@@ -43,9 +44,14 @@ export class AddEmployeeComponent {
       }]
     }).subscribe(({ data }: any) => {
       this.employees = data.addEmployee;
+      this.router.navigate(['/list'])
       this.employeeForm.reset()
     }, (error) => {
       console.log("Error: " + error)
     })
+  }
+
+  goBack() {
+    this.router.navigate(['/list']);
   }
 }

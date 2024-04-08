@@ -1,0 +1,10 @@
+<h1>LOG IN HERE:</h1>
+<form class="form" [formGroup]="userForm" (ngSubmit)="login()">
+    <input class="input" type="text" name="usernameOrEmail" placeholder="Enter User Name or Email" formControlName="usernameOrEmail" required/>
+    <br />
+    <input class="input" type="password" name="password" placeholder="Enter Password" formControlName="password" required/>
+    <br />
+    <button class="submit-button" [disabled]="userForm.invalid">Save</button>
+</form>
+<p>Do not have an account ?</p>
+<a routerLink="/register">Register</a>

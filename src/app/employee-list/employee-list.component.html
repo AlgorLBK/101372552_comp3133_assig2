@@ -1,0 +1,31 @@
+<div class="employee-management-app">
+  <h1>Employee Management App</h1>
+  <div class="employee-list">
+    <button class="add-employee-btn" (click)="navigateToAddEmployee()">Add Employee</button>
+    <h2>Employees List</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Employee First Name</th>
+          <th>Employee Last Name</th>
+          <th>Employee Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(employee of employees; track $index) {
+        <tr>
+          <td>{{ employee.first_name }}</td>
+          <td>{{ employee.last_name }}</td>
+          <td>{{ employee.email }}</td>
+          <td>
+            <button class="action-btn update" (click)="navigateToUpdate(employee._id)">Update</button>
+            <button class="action-btn delete" (click)="deleteEmployee(employee._id)">Delete</button>
+            <button class="action-btn view" (click)="navigateToView(employee._id)">View</button>
+          </td>
+        </tr>
+      }
+      </tbody>
+    </table>
+  </div>
+</div>

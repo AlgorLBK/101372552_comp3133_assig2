@@ -1,0 +1,60 @@
+.employee-management-app {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.employee-list h2 {
+  color: #333;
+}
+
+.add-employee-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+table {
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #f2f2f2;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.action-btn {
+  background-color: #17a2b8;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  margin: 0 4px;
+  cursor: pointer;
+}
+
+.action-btn.update {
+  background-color: #ffc107;
+}
+
+.action-btn.delete {
+  background-color: #dc3545;
+}
+
+.action-btn.view {
+  background-color: #28a745;
+}
